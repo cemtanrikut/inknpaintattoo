@@ -1,6 +1,8 @@
 import { useEffect, useRef } from 'react'
+import { useTranslation } from 'react-i18next'
 
 export default function Contact() {
+  const { t } = useTranslation()
   const ref = useRef(null)
 
   useEffect(() => {
@@ -22,17 +24,17 @@ export default function Contact() {
           {/* Main Inquiry Column */}
           <div className="lg:col-span-6 reveal-up border-b lg:border-none border-hairline pb-16 lg:pb-0">
             <div className="flex items-center gap-4 mb-10">
-              <span className="text-cream-dim text-[10px] tracking-[0.3em] uppercase font-mono">Inquiries</span>
+              <span className="text-cream-dim text-[10px] tracking-[0.3em] uppercase font-mono">{t('contact.subtitle')}</span>
               <span className="block w-8 h-px bg-white/10" />
             </div>
 
             <h2 className="font-display text-white text-5xl md:text-7xl leading-[1.05] tracking-tight mb-8">
-              Book a <br />
-              <span className="italic text-cream-muted font-light">Consultation.</span>
+              {t('contact.title1')} <br />
+              <span className="italic text-cream-muted font-light">{t('contact.title2')}</span>
             </h2>
 
             <p className="text-cream-muted leading-relaxed font-light text-sm md:text-base max-w-sm mb-10">
-              We operate primarily by appointment to ensure every client receives undivided architectural and artistic focus.
+              {t('contact.description')}
             </p>
 
             {/* Booking process added for business value */}
@@ -40,22 +42,22 @@ export default function Contact() {
               <div className="flex gap-4 items-start group">
                 <span className="text-crimson/50 text-[10px] tracking-widest font-mono mt-0.5">01</span>
                 <div>
-                  <p className="text-white text-[11px] uppercase tracking-[0.15em] font-medium mb-1">Submit Inquiry</p>
-                  <p className="text-cream-dim text-xs font-light">Send your concept, placement, and reference material via Instagram.</p>
+                  <p className="text-white text-[11px] uppercase tracking-[0.15em] font-medium mb-1">{t('contact.step1_title')}</p>
+                  <p className="text-cream-dim text-xs font-light">{t('contact.step1_desc')}</p>
                 </div>
               </div>
               <div className="flex gap-4 items-start group">
                 <span className="text-crimson/50 text-[10px] tracking-widest font-mono mt-0.5">02</span>
                 <div>
-                  <p className="text-white text-[11px] uppercase tracking-[0.15em] font-medium mb-1">Concept Review</p>
-                  <p className="text-cream-dim text-xs font-light">Our artists review your request to ensure it aligns with our capability and style.</p>
+                  <p className="text-white text-[11px] uppercase tracking-[0.15em] font-medium mb-1">{t('contact.step2_title')}</p>
+                  <p className="text-cream-dim text-xs font-light">{t('contact.step2_desc')}</p>
                 </div>
               </div>
               <div className="flex gap-4 items-start group">
                 <span className="text-crimson/50 text-[10px] tracking-widest font-mono mt-0.5">03</span>
                 <div>
-                  <p className="text-white text-[11px] uppercase tracking-[0.15em] font-medium mb-1">Studio Session</p>
-                  <p className="text-cream-dim text-xs font-light">A deposit secures your date. We finalize the design together in the studio.</p>
+                  <p className="text-white text-[11px] uppercase tracking-[0.15em] font-medium mb-1">{t('contact.step3_title')}</p>
+                  <p className="text-cream-dim text-xs font-light">{t('contact.step3_desc')}</p>
                 </div>
               </div>
             </div>
@@ -66,7 +68,7 @@ export default function Contact() {
               rel="noopener noreferrer"
               className="inline-flex items-center justify-between w-full md:w-auto md:min-w-[300px] px-8 py-5 border border-white/20 text-white text-[11px] tracking-[0.2em] font-medium uppercase hover:bg-white hover:text-black transition-all duration-500 group"
             >
-              <span>Start Application</span>
+              <span>{t('contact.btn')}</span>
               <svg className="w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M17 8l4 4m0 0l-4 4m4-4H3" />
               </svg>
@@ -80,29 +82,29 @@ export default function Contact() {
               <div className="absolute top-0 left-0 w-4 h-4 border-t border-l border-white/20" />
               <div className="absolute bottom-0 right-0 w-4 h-4 border-b border-r border-white/20" />
 
-              <h3 className="font-display text-white text-2xl mb-10">Studio Logistics</h3>
+              <h3 className="font-display text-white text-2xl mb-10">{t('contact.logistics_title')}</h3>
 
               <div className="flex flex-col gap-10">
                 <div className="flex gap-4 items-start">
                   <div className="w-12 h-px bg-crimson/50 mt-2 flex-shrink-0" />
                   <div>
-                    <p className="text-white text-[11px] tracking-[0.2em] uppercase font-mono mb-2">Location</p>
+                    <p className="text-white text-[11px] tracking-[0.2em] uppercase font-mono mb-2">{t('contact.loc_label')}</p>
                     <p className="text-cream-muted font-light leading-relaxed">
-                      Vinkenburgstraat 16 <br />
-                      3512 AB Utrecht <br />
-                      The Netherlands
+                      {t('contact.loc_v1')} <br />
+                      {t('contact.loc_v2')} <br />
+                      {t('contact.loc_v3')}
                     </p>
-                    <p className="text-cream-dim text-[10px] uppercase tracking-widest font-mono mt-3">Coordinates: 52°05'32.6"N 5°07'07.2"E</p>
+                    <p className="text-cream-dim text-[10px] uppercase tracking-widest font-mono mt-3">{t('contact.loc_coords')}</p>
                   </div>
                 </div>
 
                 <div className="flex gap-4 items-start">
                   <div className="w-12 h-px bg-white/10 mt-2 flex-shrink-0" />
                   <div>
-                    <p className="text-white text-[11px] tracking-[0.2em] uppercase font-mono mb-2">Direct Line</p>
+                    <p className="text-white text-[11px] tracking-[0.2em] uppercase font-mono mb-2">{t('contact.phone_label')}</p>
                     <p className="text-cream-muted font-light">
-                      <a href="tel:+31620973330" className="link-underline hover:text-white transition-colors">
-                        +31 6 2097 3330
+                      <a href={`tel:${t('contact.phone_val').replace(/\s/g, '')}`} className="link-underline hover:text-white transition-colors">
+                        {t('contact.phone_val')}
                       </a>
                     </p>
                   </div>
@@ -111,16 +113,16 @@ export default function Contact() {
                 <div className="flex gap-4 items-start">
                   <div className="w-12 h-px bg-white/10 mt-2 flex-shrink-0" />
                   <div>
-                    <p className="text-white text-[11px] tracking-[0.2em] uppercase font-mono mb-2">Hours</p>
+                    <p className="text-white text-[11px] tracking-[0.2em] uppercase font-mono mb-2">{t('contact.hours_label')}</p>
                     <table className="text-cream-muted font-light text-sm w-full max-w-[200px]">
                       <tbody>
                         <tr>
-                          <td className="py-1">Wed – Sun</td>
-                          <td className="text-right py-1">11:00 – 18:00</td>
+                          <td className="py-1">{t('contact.h_r1_t')}</td>
+                          <td className="text-right py-1">{t('contact.h_r1_v')}</td>
                         </tr>
                         <tr>
-                          <td className="py-1 text-cream-dim">Mon & Tue</td>
-                          <td className="text-right py-1 text-cream-dim">Closed</td>
+                          <td className="py-1 text-cream-dim">{t('contact.h_r2_t')}</td>
+                          <td className="text-right py-1 text-cream-dim">{t('contact.h_r2_v')}</td>
                         </tr>
                       </tbody>
                     </table>

@@ -1,0 +1,130 @@
+{
+  "nav": {
+    "work": "Work",
+    "studio": "Studio",
+    "artist": "Artist",
+    "about": "About",
+    "reviews": "Reviews",
+    "faq": "FAQ",
+    "contact": "Contact",
+    "cta": "Consultation"
+  },
+  "hero": {
+    "badge": "Laying ink since 2015",
+    "title1": "Redefining",
+    "title2": "The Ink Experience.",
+    "description": "Premium blackwork and fine line tattooing focused on precision, atmosphere, and permanence. Operating out of a private studio designed for the dedicated collector.",
+    "cta1": "View Portfolio",
+    "cta2": "Book Consultation"
+  },
+  "studio": {
+    "subtitle": "The Studio",
+    "title1": "Precision.",
+    "title2": "Atmosphere.",
+    "title3": "Permanence.",
+    "p1": "Ink 'n Pain is not a street shop. It is a private, appointment-only creative space designed to provide the highest echelon of tattoo artistry in a clean, distraction-free environment.",
+    "p2": "We believe getting tattooed should be as premium as the art itself. From the initial consultation to the final aftercare instructions, every step is curated for excellence.",
+    "location": "Location: Amsterdam",
+    "availability": "Availability: Invite Only"
+  },
+  "artist": {
+    "subtitle": "The Artist",
+    "title1": "Crafted Identity.",
+    "title2": "Obsessive Execution.",
+    "p1": "With years of experience blending modern techniques with classic fundamentals, I approach every project not just as a piece of art, but as an architectural permanent addition to the human form.",
+    "p2": "My primary focus in the studio is blackwork, fine line, and surrealism. I work closely with my clients to ensure the final piece is both deeply personal and aesthetically timeless.",
+    "exp_label": "Experience",
+    "exp_value": "8+ Years",
+    "specialty_label": "Specialty",
+    "specialty_value": "Blackwork & Fine Line"
+  },
+  "gallery": {
+    "subtitle": "Portfolio",
+    "title1": "Archives of Ink.",
+    "title2": "A Curated Body of Work.",
+    "p1": "To maintain our standard of quality, we take on a limited number of new projects each month. We prioritize concepts that align with our artistic direction.",
+    "cta": "View Complete Archive"
+  },
+  "whyUs": {
+    "subtitle": "Philosophy",
+    "title1": "Ethos &",
+    "title2": "Execution.",
+    "description": "We believe a tattoo studio should operate with the precision of a clinic but feel like a private atelier. Here is what defines our process.",
+    "f1_title": "Surgical Hygiene",
+    "f1_desc": "Hospital-grade sterilization protocols. Your safety is a non-negotiable fundamental.",
+    "f2_title": "Custom Engineering",
+    "f2_desc": "Every design is drawn specifically for the client. Your identity, permanently realized.",
+    "f3_title": "Curated Atmosphere",
+    "f3_desc": "A private, distraction-free environment allowing deep focus during the execution."
+  },
+  "reviews": {
+    "subtitle": "Testimonials",
+    "title1": "Client",
+    "title2": "Experiences.",
+    "list": [
+      {
+        "text": "Deze shop heeft 2 nieuwe vaste klanten erbij gekregen... Het voelde alsof we op visite waren en we hadden gelijk een gevoel van thuis!",
+        "author": "LUC"
+      },
+      {
+        "text": "I walked in to ask for a fine line tattoo and he did it the same day, the tattoo is 1:1 to what i showed.",
+        "author": "RALUCA GEORGESCU"
+      },
+      {
+        "text": "Vroeger had men een lijfarts. Maar Ink 'n Pain begint nu wel een lijfinker te worden..",
+        "author": "ALEX KES"
+      }
+    ],
+    "cta": "Read More on Google"
+  },
+  "faq": {
+    "subtitle": "Knowledge",
+    "title1": "Frequently",
+    "title2": "Asked Questions.",
+    "q1": "How do I book an appointment?",
+    "a1": "All bookings are handled through our online consultation form. We review proposals weekly and select projects that align with our style.",
+    "q2": "What are your specific rates?",
+    "a2": "Rates vary based on complexity, size, and placement. A day rate is available for large-scale projects. Estimates are provided after the initial consultation.",
+    "q3": "Do you do cover-ups?",
+    "a3": "Cover-ups are taken on a very selective basis. Please include a clear, well-lit photo of the existing tattoo in your inquiry.",
+    "q4": "How should I prepare for my session?",
+    "a4": "Get a full night's sleep, eat a substantial meal beforehand, and avoid alcohol for 24 hours prior. We will provide full aftercare instructions post-session."
+  },
+  "contact": {
+    "subtitle": "Inquiries",
+    "title1": "Book a",
+    "title2": "Consultation.",
+    "description": "We operate primarily by appointment to ensure every client receives undivided architectural and artistic focus.",
+    "step1_title": "Submit Inquiry",
+    "step1_desc": "Send your concept, placement, and reference material via Instagram.",
+    "step2_title": "Concept Review",
+    "step2_desc": "Our artists review your request to ensure it aligns with our capability and style.",
+    "step3_title": "Studio Session",
+    "step3_desc": "A deposit secures your date. We finalize the design together in the studio.",
+    "btn": "Start Application",
+    "logistics_title": "Studio Logistics",
+    "loc_label": "Location",
+    "loc_v1": "Vinkenburgstraat 16",
+    "loc_v2": "3512 AB Utrecht",
+    "loc_v3": "The Netherlands",
+    "loc_coords": "Coordinates: 52°05'32.6\"N 5°07'07.2\"E",
+    "phone_label": "Direct Line",
+    "phone_val": "+31 6 2097 3330",
+    "hours_label": "Hours",
+    "h_r1_t": "Wed – Sun",
+    "h_r1_v": "11:00 – 18:00",
+    "h_r2_t": "Mon & Tue",
+    "h_r2_v": "Closed"
+  },
+  "footer": {
+    "brand_text": "Creating permanent, architectural identity.",
+    "brand_text2": "Exclusively custom tattoo art.",
+    "nav_label": "Navigation",
+    "connect_label": "Connect",
+    "rights": "Ink 'n Pain. All Rights Reserved.",
+    "lgbtq": "LGBTQ+ Friendly Space",
+    "designed": "Designed & Engineered for",
+    "utrecht": "Utrecht",
+    "bg_text": "UTRECHT"
+  }
+}

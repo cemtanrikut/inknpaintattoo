@@ -1,6 +1,8 @@
 import { useEffect, useRef } from 'react'
+import { useTranslation } from 'react-i18next'
 
 export default function Footer() {
+  const { t } = useTranslation()
   const ref = useRef(null)
   const year = new Date().getFullYear()
 
@@ -20,7 +22,7 @@ export default function Footer() {
       {/* Giant Typography Background */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-[60%] w-full flex justify-center items-center select-none pointer-events-none opacity-[0.03]">
         <span className="font-display text-[25vw] md:text-[20vw] font-black tracking-tighter leading-none whitespace-nowrap text-white">
-          UTRECHT
+          {t('footer.bg_text')}
         </span>
       </div>
 
@@ -39,14 +41,14 @@ export default function Footer() {
               />
             </button>
             <p className="text-cream-muted text-sm font-light max-w-sm mt-4">
-              Creating permanent, architectural identity. <br />
-              Exclusively custom tattoo art.
+              {t('footer.brand_text')} <br />
+              {t('footer.brand_text2')}
             </p>
           </div>
 
           {/* Links Col */}
           <div>
-            <p className="text-white text-[10px] tracking-[0.2em] font-mono uppercase mb-6">Navigation</p>
+            <p className="text-white text-[10px] tracking-[0.2em] font-mono uppercase mb-6">{t('footer.nav_label')}</p>
             <nav className="flex flex-col gap-4 text-sm font-light text-cream-muted">
               {['work', 'about', 'faq', 'reviews', 'contact'].map(id => (
                 <button 
@@ -54,7 +56,7 @@ export default function Footer() {
                   onClick={() => document.querySelector(`#${id}`)?.scrollIntoView({ behavior: 'smooth' })}
                   className="w-fit link-underline capitalize hover:text-white transition-colors"
                 >
-                  {id}
+                  {t(`nav.${id}`) || id}
                 </button>
               ))}
             </nav>
@@ -62,7 +64,7 @@ export default function Footer() {
 
           {/* Socials Col */}
           <div>
-            <p className="text-white text-[10px] tracking-[0.2em] font-mono uppercase mb-6">Connect</p>
+            <p className="text-white text-[10px] tracking-[0.2em] font-mono uppercase mb-6">{t('footer.connect_label')}</p>
             <nav className="flex flex-col gap-4 text-sm font-light text-cream-muted">
               <a href="https://www.instagram.com/ink.n.pain.tattoo" target="_blank" rel="noopener noreferrer" className="w-fit link-underline hover:text-white transition-colors">
                 Instagram
@@ -74,15 +76,15 @@ export default function Footer() {
         {/* Bottom Bar */}
         <div className="reveal-up pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4 text-[10px] tracking-widest font-mono text-cream-dim uppercase" style={{ transitionDelay: '0.2s' }}>
           <div className="flex flex-col md:flex-row items-center gap-4 md:gap-8">
-            <p>© {year} Ink 'n Pain. All Rights Reserved.</p>
+            <p>© {year} {t('footer.rights')}</p>
             <div className="hidden md:block w-1 h-1 bg-white/20 rounded-full" />
             <p className="flex items-center gap-2">
               <span className="w-1.5 h-1.5 rounded-full bg-gradient-to-r from-red-500 via-yellow-500 to-purple-500" />
-              LGBTQ+ Friendly Space
+              {t('footer.lgbtq')}
             </p>
           </div>
           <p>
-            Designed & Engineered for <span className="text-white">Utrecht</span>
+            {t('footer.designed')} <span className="text-white">{t('footer.utrecht')}</span>
           </p>
         </div>
       </div>

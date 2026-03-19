@@ -1,6 +1,12 @@
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import { useEffect } from 'react'
+import { useTranslation } from 'react-i18next'
+import { db } from './firebase'
+import { doc, getDoc } from 'firebase/firestore'
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
 import About from './components/About'
+import Artist from './components/Artist'
 import Gallery from './components/Gallery'
 import WhyUs from './components/WhyUs'
 import Reviews from './components/Reviews'
@@ -8,14 +14,42 @@ import Contact from './components/Contact'
 import FAQ from './components/FAQ'
 import InstagramCTA from './components/InstagramCTA'
 import Footer from './components/Footer'
+import Admin from './pages/Admin'
 
-export default function App() {
+function HomeLayout() {
+  const { i18n } = useTranslation()
+
+  useEffect(() => {
+    const loadCustomTexts = async () => {
+      try {
+        const docRef = doc(db, 'siteContent', 'dashboard')
+        const docSnap = await getDoc(docRef)
+        
+        if (docSnap.exists() && docSnap.data().customTexts) {
+          const custom = docSnap.data().customTexts
+          
+          if (custom.en) {
+            i18n.addResourceBundle('en', 'translation', custom.en, true, true)
+          }
+
+          if (custom.nl) {
+            i18n.addResourceBundle('nl', 'translation', custom.nl, true, true)
+          }
+        }
+      } catch (e) {
+        console.error("Firebase text fetch failed", e)
+      }
+    }
+    loadCustomTexts()
+  }, [i18n])
+
   return (
-    <div className="bg-ink-black min-h-screen">
+    <>
       <Navbar />
       <main>
         <Hero />
         <About />
+        <Artist />
         <Gallery />
         <WhyUs />
         <FAQ />
@@ -24,6 +58,19 @@ export default function App() {
         <InstagramCTA />
       </main>
       <Footer />
-    </div>
+    </>
+  )
+}
+
+export default function App() {
+  return (
+    <Router>
+      <div className="bg-ink-black min-h-screen">
+        <Routes>
+          <Route path="/" element={<HomeLayout />} />
+          <Route path="/admin" element={<Admin />} />
+        </Routes>
+      </div>
+    </Router>
   )
 }

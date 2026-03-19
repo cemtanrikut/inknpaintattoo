@@ -1,8 +1,11 @@
 import { useEffect } from 'react'
+import { useTranslation } from 'react-i18next'
 
 const HERO_BG = 'https://images.unsplash.com/photo-1598371839696-5c5bb00bdc28?w=2400&q=85&fit=crop'
 
 export default function Hero() {
+  const { t } = useTranslation()
+
   useEffect(() => {
     // Immediate reveal trigger for hero elements
     const timer = setTimeout(() => {
@@ -45,7 +48,7 @@ export default function Hero() {
           <div className="flex items-center gap-3 px-4 py-2 border border-white/10 bg-[#050505]/50 backdrop-blur-md mb-8">
             <span className="w-1.5 h-1.5 rounded-full bg-[#10B981] animate-pulse-slow shadow-[0_0_8px_rgba(16,185,129,0.5)]"></span>
             <span className="text-cream-dim text-[10px] tracking-[0.2em] uppercase font-mono mt-0.5">
-              Books Open: Waitlist Available
+              {t('hero.badge', 'Books Open: Waitlist Available')}
             </span>
           </div>
 
@@ -61,8 +64,7 @@ export default function Hero() {
         {/* Right Col: Intro Copy & CTAs */}
         <div className="hero-anim reveal-up md:w-[400px] flex flex-col gap-8 pb-4" style={{ transitionDelay: '0.4s' }}>
           <p className="text-cream-muted text-sm md:text-base leading-relaxed font-light">
-            Utrecht's premier destination for custom tattoo art. 
-            A private, architectural space dedicated to obsessive precision and permanent identity.
+            {t('hero.description', "Utrecht's premier destination for custom tattoo art. A private, architectural space dedicated to obsessive precision and permanent identity.")}
           </p>
 
           <div className="flex flex-col gap-4 w-full sm:w-max">
@@ -73,7 +75,7 @@ export default function Hero() {
               className="group relative px-8 py-4 bg-white text-black text-[11px] tracking-[0.2em] font-medium uppercase overflow-hidden text-center flex items-center justify-center gap-2"
             >
               <span className="relative z-10 flex items-center gap-2">
-                Submit Project Inquiry
+                {t('hero.submit_inquiry', 'Submit Project Inquiry')}
                 <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                 </svg>
@@ -85,7 +87,7 @@ export default function Hero() {
               onClick={() => scrollTo('#work')}
               className="px-8 py-4 border border-white/20 text-white text-[11px] tracking-[0.2em] font-medium uppercase hover:border-white/60 transition-colors duration-500 bg-[#050505]/50 backdrop-blur-md"
             >
-              Explore the Archives
+              {t('hero.explore', 'Explore the Archives')}
             </button>
           </div>
         </div>

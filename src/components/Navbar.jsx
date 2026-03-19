@@ -1,15 +1,18 @@
 import { useState, useEffect } from 'react'
-
-const navItems = [
-  { label: 'Work', href: '#work' },
-  { label: 'Studio', href: '#about' },
-  { label: 'Journal', href: '#reviews' },
-  { label: 'Contact', href: '#contact' },
-]
+import { useTranslation } from 'react-i18next'
 
 export default function Navbar() {
+  const { t, i18n } = useTranslation()
   const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
+
+  const navItems = [
+    { label: t('nav.work', 'Work'), href: '#work' },
+    { label: t('nav.studio', 'Studio'), href: '#about' },
+    { label: t('nav.artist', 'Artist'), href: '#artist' },
+    { label: t('nav.journal', 'Journal'), href: '#reviews' },
+    { label: t('nav.contact', 'Contact'), href: '#contact' },
+  ]
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 80)
@@ -63,8 +66,14 @@ export default function Navbar() {
             className="ml-4 px-6 py-2.5 border border-white/20 text-cream text-[11px] tracking-[0.2em] uppercase font-mono hover:bg-white hover:text-black transition-all duration-500 flex items-center gap-2"
           >
             <span className="w-1.5 h-1.5 rounded-full bg-[#10B981] animate-pulse-slow shadow-[0_0_8px_rgba(16,185,129,0.5)]"></span>
-            Apply for Consultation
+            {t('nav.consultation', 'Apply for Consultation')}
           </a>
+
+          <div className="flex items-center gap-3 border-l border-white/20 pl-6 ml-2">
+            <button onClick={() => i18n.changeLanguage('en')} className={`text-[10px] font-mono tracking-widest ${i18n.language === 'en' ? 'text-white' : 'text-cream-dim hover:text-white'} transition-colors`}>EN</button>
+            <span className="text-white/20 text-xs">|</span>
+            <button onClick={() => i18n.changeLanguage('nl')} className={`text-[10px] font-mono tracking-widest ${i18n.language === 'nl' ? 'text-white' : 'text-cream-dim hover:text-white'} transition-colors`}>NL</button>
+          </div>
         </nav>
 
         {/* Mobile menu toggle */}
@@ -103,8 +112,14 @@ export default function Navbar() {
             className="mt-8 px-8 py-3 border border-white/20 text-white text-xs tracking-[0.2em] uppercase font-mono transition-all duration-300 active:bg-white active:text-black flex items-center gap-2"
           >
             <span className="w-1.5 h-1.5 rounded-full bg-[#10B981] shadow-[0_0_8px_rgba(16,185,129,0.5)]"></span>
-            Apply for Consultation
+            {t('nav.consultation', 'Apply for Consultation')}
           </a>
+          
+          <div className="mt-6 flex items-center gap-4">
+            <button onClick={() => { i18n.changeLanguage('en'); setMenuOpen(false); }} className={`text-[11px] font-mono tracking-widest ${i18n.language === 'en' ? 'text-white' : 'text-cream-dim'} transition-colors`}>EN</button>
+            <span className="text-white/20 text-xs">|</span>
+            <button onClick={() => { i18n.changeLanguage('nl'); setMenuOpen(false); }} className={`text-[11px] font-mono tracking-widest ${i18n.language === 'nl' ? 'text-white' : 'text-cream-dim'} transition-colors`}>NL</button>
+          </div>
         </nav>
       </div>
     </header>

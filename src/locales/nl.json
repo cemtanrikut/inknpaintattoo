@@ -1,0 +1,130 @@
+{
+  "nav": {
+    "work": "Portfolio",
+    "studio": "Studio",
+    "artist": "Artiest",
+    "about": "Over Ons",
+    "reviews": "Recensies",
+    "faq": "FAQ",
+    "contact": "Contact",
+    "cta": "Consultatie"
+  },
+  "hero": {
+    "badge": "Inkt leggen sinds 2015",
+    "title1": "Herdefiniëren",
+    "title2": "De Inkt Ervaring.",
+    "description": "Premium blackwork en fine line tatoeëren met een focus op precisie, sfeer en permanentie. Werkend vanuit een privé studio ontworpen voor de toegewijde verzamelaar.",
+    "cta1": "Bekijk Portfolio",
+    "cta2": "Boek Consultatie"
+  },
+  "studio": {
+    "subtitle": "De Studio",
+    "title1": "Precisie.",
+    "title2": "Sfeer.",
+    "title3": "Permanentie.",
+    "p1": "Ink 'n Pain is geen straatwinkel. Het is een creatieve privéruimte, alleen op afspraak, ontworpen om de hoogste klasse van tatoeagekunst te bieden in een schone, afleidingsvrije omgeving.",
+    "p2": "Wij geloven dat getatoeëerd worden net zo premium moet zijn als de kunst zelf. Van het eerste consult tot de laatste nazorginstructies, elke stap is samengesteld voor uitmuntendheid.",
+    "location": "Locatie: Amsterdam",
+    "availability": "Beschikbaarheid: Alleen op Uitnodiging"
+  },
+  "artist": {
+    "subtitle": "De Artiest",
+    "title1": "Gemaakt Detail.",
+    "title2": "Obsessieve Uitvoering.",
+    "p1": "Met jarenlange ervaring in het combineren van moderne technieken met klassieke grondbeginselen, benader ik elk project niet alleen als kunst, maar als een architectonische permanente toevoeging aan de menselijke vorm.",
+    "p2": "Mijn primaire focus in de studio ligt op blackwork, fine line en surrealisme. Ik werk nauw samen met mijn klanten om ervoor te zorgen dat het uiteindelijke stuk zowel diep persoonlijk als esthetisch tijdloos is.",
+    "exp_label": "Ervaring",
+    "exp_value": "8+ Jaar",
+    "specialty_label": "Specialiteit",
+    "specialty_value": "Blackwork & Fine Line"
+  },
+  "gallery": {
+    "subtitle": "Portfolio",
+    "title1": "Archieven van Inkt.",
+    "title2": "Een Zorgvuldig Gekozen Werk.",
+    "p1": "Om onze kwaliteitsstandaard te behouden, nemen we maandelijks een beperkt aantal nieuwe projecten aan. We geven prioriteit aan concepten die aansluiten bij onze artistieke richting.",
+    "cta": "Bekijk Volledig Archief"
+  },
+  "whyUs": {
+    "subtitle": "Filosofie",
+    "title1": "Ethos &",
+    "title2": "Uitvoering.",
+    "description": "Wij geloven dat een tattoo studio met de precisie van een kliniek moet werken, maar moet aanvoelen als een privé-atelier.",
+    "f1_title": "Chirurgische Hygiëne",
+    "f1_desc": "Ziekenhuiskwaliteit sterilisatieprotocollen. Uw veiligheid is een onbespreekbaar fundament.",
+    "f2_title": "Op Maat Gemaakt",
+    "f2_desc": "Elk ontwerp wordt specifiek voor de klant getekend. Uw identiteit, permanent gerealiseerd.",
+    "f3_title": "Samengestelde Sfeer",
+    "f3_desc": "Een privé, afleidingsvrije omgeving die diepe focus mogelijk maakt tijdens de uitvoering."
+  },
+  "reviews": {
+    "subtitle": "Testimonials",
+    "title1": "Klant",
+    "title2": "Ervaringen.",
+    "list": [
+      {
+        "text": "Deze shop heeft 2 nieuwe vaste klanten erbij gekregen... Het voelde alsof we op visite waren en we hadden gelijk een gevoel van thuis!",
+        "author": "LUC"
+      },
+      {
+        "text": "I walked in to ask for a fine line tattoo and he did it the same day, the tattoo is 1:1 to what i showed.",
+        "author": "RALUCA GEORGESCU"
+      },
+      {
+        "text": "Vroeger had men een lijfarts. Maar Ink 'n Pain begint nu wel een lijfinker te worden..",
+        "author": "ALEX KES"
+      }
+    ],
+    "cta": "Lees Meer op Google"
+  },
+  "faq": {
+    "subtitle": "Kennis",
+    "title1": "Veelgestelde",
+    "title2": "Vragen.",
+    "q1": "Hoe boek ik een afspraak?",
+    "a1": "Alle boekingen verlopen via ons online consultatieformulier. We beoordelen wekelijks voorstellen en selecteren projecten die aansluiten bij onze stijl.",
+    "q2": "Wat zijn jullie specifieke tarieven?",
+    "a2": "Tarieven variëren afhankelijk van complexiteit, grootte en plaatsing. Er is een dagtarief beschikbaar voor grootschalige projecten. Schattingen worden na het eerste consult verstrekt.",
+    "q3": "Doen jullie cover-ups?",
+    "a3": "Cover-ups worden op zeer selectieve basis aangenomen. Stuur alsjeblieft een duidelijke, goed verlichte foto mee van de bestaande tatoeage bij je aanvraag.",
+    "q4": "Hoe moet ik me voorbereiden op een sessie?",
+    "a4": "Zorg voor een volledige nachtrust, eet vooraf een stevige maaltijd en vermijd alcohol 24 uur van tevoren. We zullen volledige nazorginstructies verstrekken na de sessie."
+  },
+  "contact": {
+    "subtitle": "Aanvragen",
+    "title1": "Boek een",
+    "title2": "Consultatie.",
+    "description": "We werken voornamelijk op afspraak om ervoor te zorgen dat elke klant onverdeelde architecturale en artistieke aandacht krijgt.",
+    "step1_title": "Aanvraag Indienen",
+    "step1_desc": "Stuur uw concept, plaatsing en referentiemateriaal via Instagram.",
+    "step2_title": "Concept Beoordeling",
+    "step2_desc": "Onze artiesten beoordelen uw verzoek op haalbaarheid.",
+    "step3_title": "Studio Sessie",
+    "step3_desc": "Een aanbetaling stelt uw datum veilig. We ronden het samen af in de studio.",
+    "btn": "Start Aanvraag",
+    "logistics_title": "Studio Logistiek",
+    "loc_label": "Locatie",
+    "loc_v1": "Vinkenburgstraat 16",
+    "loc_v2": "3512 AB Utrecht",
+    "loc_v3": "Nederland",
+    "loc_coords": "Coördinaten: 52°05'32.6\"N 5°07'07.2\"E",
+    "phone_label": "Directe Lijn",
+    "phone_val": "+31 6 2097 3330",
+    "hours_label": "Openingstijden",
+    "h_r1_t": "Woe – Zon",
+    "h_r1_v": "11:00 – 18:00",
+    "h_r2_t": "Maa & Din",
+    "h_r2_v": "Gesloten"
+  },
+  "footer": {
+    "brand_text": "Het creëren van permanente, architecturale identiteit.",
+    "brand_text2": "Uitsluitend op maat gemaakte tattoo-kunst.",
+    "nav_label": "Navigatie",
+    "connect_label": "Verbinden",
+    "rights": "Ink 'n Pain. Alle rechten voorbehouden.",
+    "lgbtq": "LGBTQ+ Vriendelijke Ruimte",
+    "designed": "Ontworpen en gebouwd voor",
+    "utrecht": "Utrecht",
+    "bg_text": "UTRECHT"
+  }
+}

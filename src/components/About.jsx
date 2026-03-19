@@ -1,9 +1,11 @@
 import { useEffect, useRef } from 'react'
+import { useTranslation } from 'react-i18next'
 
 const ABOUT_IMG_1 = '/about-1.jpg'
 const ABOUT_IMG_2 = '/about-2.jpg'
 
 export default function About() {
+  const { t } = useTranslation()
   const ref = useRef(null)
 
   useEffect(() => {
@@ -34,33 +36,33 @@ export default function About() {
           {/* Text Content (Col 1-5) */}
           <div className="lg:col-span-5 flex flex-col pt-10">
             <div className="reveal-left flex items-center gap-4 mb-10">
-              <span className="text-cream-dim text-[10px] tracking-[0.3em] uppercase font-mono">The Studio</span>
+              <span className="text-cream-dim text-[10px] tracking-[0.3em] uppercase font-mono">{t('studio.subtitle', 'The Studio')}</span>
               <span className="block flex-1 h-px bg-white/10" />
             </div>
 
             <h2 className="reveal-up font-display text-white text-5xl md:text-7xl leading-[1.1] tracking-tight mb-8" style={{ transitionDelay: '0.1s' }}>
-              Where Skin <br />
-              <span className="italic text-cream-muted font-light">Becomes Canvas.</span>
+              {t('studio.title_part1', 'Where Skin')} <br />
+              <span className="italic text-cream-muted font-light">{t('studio.title_part2', 'Becomes Canvas.')}</span>
             </h2>
 
             <div className="reveal-up space-y-8" style={{ transitionDelay: '0.2s' }}>
               <p className="text-cream-muted leading-relaxed text-sm md:text-base font-light">
-                Ink 'n Pain was established with a singular vision: to elevate tattooing from a transaction to a collaborative artistic process. Based in the historical center of Utrecht, we have built a sanctuary for architectural aesthetics and meticulous craftsmanship.
+                {t('studio.p1', "Ink 'n Pain was established with a singular vision: to elevate tattooing from a transaction to a collaborative artistic process. Based in the historical center of Utrecht, we have built a sanctuary for architectural aesthetics and meticulous craftsmanship.")}
               </p>
               
               <p className="text-cream-muted leading-relaxed text-sm md:text-base font-light">
-                We reject the idea of rushing. A tattoo is a permanent commitment to oneself. We provide an environment of absolute focus, executing visionary blackwork, fine line, and neo-traditional pieces for a discerning clientele.
+                {t('studio.p2', "We reject the idea of rushing. A tattoo is a permanent commitment to oneself. We provide an environment of absolute focus, executing visionary blackwork, fine line, and neo-traditional pieces for a discerning clientele.")}
               </p>
 
               {/* Minimal stats */}
               <div className="grid grid-cols-2 gap-8 pt-10 mt-10 border-t border-hairline">
                 <div>
                   <p className="font-display text-white text-3xl mb-1">4.7</p>
-                  <p className="text-cream-dim text-[10px] tracking-[0.2em] uppercase font-mono">Google Rating</p>
+                  <p className="text-cream-dim text-[10px] tracking-[0.2em] uppercase font-mono">{t('studio.rating_label', 'Google Rating')}</p>
                 </div>
                 <div>
                   <p className="font-display text-white text-3xl mb-1">60<span className="text-crimson/80">+</span></p>
-                  <p className="text-cream-dim text-[10px] tracking-[0.2em] uppercase font-mono">Verified Reviews</p>
+                  <p className="text-cream-dim text-[10px] tracking-[0.2em] uppercase font-mono">{t('studio.reviews_label', 'Verified Reviews')}</p>
                 </div>
               </div>
             </div>
