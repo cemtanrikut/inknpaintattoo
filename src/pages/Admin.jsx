@@ -3,6 +3,7 @@ import { db } from '../firebase'
 import { doc, getDoc, setDoc, collection, addDoc, getDocs, deleteDoc, query, orderBy } from 'firebase/firestore'
 import enDefault from '../locales/en.json'
 import nlDefault from '../locales/nl.json'
+import toast from 'react-hot-toast'
 
 export default function Admin() {
   const [isAuthenticated, setIsAuthenticated] = useState(false)
@@ -105,7 +106,7 @@ export default function Admin() {
       
       setInstagramLinks(prev => [{ id: docRef.id, url: base64Image }, ...prev])
     } catch(err) {
-      alert('Error uploading file: ' + err.message)
+      toast.error('Error uploading image: ' + err.message)
       console.error(err)
     } finally {
       setUploading(false)
@@ -118,7 +119,7 @@ export default function Admin() {
       await deleteDoc(doc(db, 'portfolio', idToRemove))
       setInstagramLinks(prev => prev.filter(img => img.id !== idToRemove))
     } catch(err) {
-      alert('Error updating DB: ' + err.message)
+      toast.error('Error updating database: ' + err.message)
     }
   }
 
@@ -126,10 +127,10 @@ export default function Admin() {
     e.preventDefault()
     try {
       await setDoc(doc(db, 'siteContent', 'dashboard'), { customTexts }, { merge: true })
-      alert('Tüm web sitesi yazıları başarıyla kaydedildi! (Ana sayfada hemen görebilirsiniz)')
+      toast.success('All website texts saved successfully! Updates are live.')
     } catch(err) {
       console.error(err)
-      alert('Kaydedilemedi! Firebase konsolundan "Firestore Database"in kurulu olduğundan emin olun.')
+      toast.error('Failed to save! Please verify that "Firestore Database" is set up in Firebase.')
     }
   }
 

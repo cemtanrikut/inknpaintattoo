@@ -15,6 +15,7 @@ import FAQ from './components/FAQ'
 import InstagramCTA from './components/InstagramCTA'
 import Footer from './components/Footer'
 import Admin from './pages/Admin'
+import { Toaster } from 'react-hot-toast'
 
 function HomeLayout() {
   const { i18n } = useTranslation()
@@ -66,6 +67,33 @@ export default function App() {
   return (
     <Router>
       <div className="bg-ink-black min-h-screen">
+        <Toaster 
+          position="top-right"
+          toastOptions={{
+            style: {
+              background: '#0a0a0a',
+              color: '#fff',
+              border: '1px solid rgba(255,255,255,0.1)',
+              fontFamily: 'monospace',
+              fontSize: '11px',
+              letterSpacing: '0.05em',
+              borderRadius: '0px',
+              padding: '12px 16px',
+            },
+            success: {
+              iconTheme: {
+                primary: '#fff',
+                secondary: '#0a0a0a',
+              },
+            },
+            error: {
+              iconTheme: {
+                primary: '#ef4444',
+                secondary: '#0a0a0a',
+              },
+            },
+          }}
+        />
         <Routes>
           <Route path="/" element={<HomeLayout />} />
           <Route path="/admin" element={<Admin />} />
