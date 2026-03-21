@@ -12,6 +12,7 @@ export default function Admin() {
   const [activeTextSection, setActiveTextSection] = useState('hero')
   const [instagramLinks, setInstagramLinks] = useState([])
   const [uploading, setUploading] = useState(false)
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
   
   const [editingLang, setEditingLang] = useState('en')
   const [customTexts, setCustomTexts] = useState({ en: {}, nl: {} })
@@ -239,21 +240,41 @@ export default function Admin() {
   return (
     <div className="min-h-screen bg-[#030303] text-white flex flex-col md:flex-row">
       {/* Sidebar */}
-      <aside className="w-full md:w-64 border-r border-white/10 bg-[#050505] p-8 flex flex-col gap-8 sticky top-0 min-h-screen">
-        <div>
-          <h2 className="font-display text-2xl mb-1">Dashboard</h2>
-          <p className="text-cream-dim text-[10px] font-mono tracking-widest uppercase text-emerald-500">Online & Synced</p>
+      <aside className="w-full md:w-64 border-b md:border-b-0 md:border-r border-white/10 bg-[#050505] p-6 md:p-8 flex flex-col gap-6 md:gap-8 sticky top-0 md:min-h-screen z-40 bg-[#050505]/95 backdrop-blur-md">
+        <div className="flex items-center justify-between md:block">
+          <div>
+            <h2 className="font-display text-2xl mb-1">Dashboard</h2>
+            <p className="text-cream-dim text-[10px] font-mono tracking-widest uppercase text-emerald-500">Online & Synced</p>
+          </div>
+          {/* Mobile Menu Button */}
+          <button 
+            type="button"
+            onClick={() => setIsMenuOpen(!isMenuOpen)} 
+            className="md:hidden text-white p-2 focus:outline-none"
+          >
+            {isMenuOpen ? (
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            ) : (
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+              </svg>
+            )}
+          </button>
         </div>
 
-        <nav className="flex flex-col gap-2 flex-1 mt-8">
+        <nav className={`flex-col gap-2 flex-1 mt-4 md:mt-8 ${isMenuOpen ? 'flex' : 'hidden md:flex'}`}>
           <button 
-            onClick={() => setActiveTab('portfolio')}
+            type="button"
+            onClick={() => { setActiveTab('portfolio'); setIsMenuOpen(false); }}
             className={`text-left px-4 py-3 text-[11px] font-mono tracking-[0.2em] uppercase transition-colors ${activeTab === 'portfolio' ? 'bg-white text-black' : 'text-cream-muted hover:bg-white/5'}`}
           >
             Portfolio Images
           </button>
           <button 
-            onClick={() => setActiveTab('texts')}
+            type="button"
+            onClick={() => { setActiveTab('texts'); setIsMenuOpen(false); }}
             className={`text-left px-4 py-3 text-[11px] font-mono tracking-[0.2em] uppercase transition-colors ${activeTab === 'texts' ? 'bg-white text-black' : 'text-cream-muted hover:bg-white/5'}`}
           >
              Website Texts
@@ -261,8 +282,9 @@ export default function Admin() {
         </nav>
 
         <button 
-          onClick={handleLogout}
-          className="text-left px-4 py-3 text-[11px] font-mono tracking-[0.2em] uppercase text-crimson hover:bg-crimson/10 transition-colors"
+          type="button"
+          onClick={() => { handleLogout(); setIsMenuOpen(false); }}
+          className={`text-left px-4 py-3 text-[11px] font-mono tracking-[0.2em] uppercase text-crimson hover:bg-crimson/10 transition-colors mt-4 md:mt-0 ${isMenuOpen ? 'block' : 'hidden md:block'}`}
         >
           Lock & Logout
         </button>
@@ -353,14 +375,14 @@ export default function Admin() {
             <form onSubmit={handleSaveTexts} className="pb-32 flex flex-col md:flex-row gap-12">
               
               {/* Internal Section Navigation */}
-              <div className="md:w-56 shrink-0 flex flex-col gap-2">
-                <h4 className="text-[10px] font-mono tracking-[0.2em] uppercase text-cream-dim mb-4 px-4">Website Sections</h4>
+              <div className="flex overflow-x-auto md:flex-col gap-2 md:w-56 pb-4 md:pb-0 shrink-0 border-b md:border-b-0 border-white/5">
+                <h4 className="hidden md:block text-[10px] font-mono tracking-[0.2em] uppercase text-cream-dim mb-4 px-4">Website Sections</h4>
                 {Object.keys(enDefault).map(section => (
                   <button 
                     key={section}
                     type="button"
                     onClick={() => setActiveTextSection(section)}
-                    className={`text-left px-4 py-3 text-[11px] font-mono tracking-widest uppercase transition-colors ${activeTextSection === section ? 'bg-white/10 text-white border-l-2 border-white' : 'text-cream-muted hover:text-white hover:bg-white/5'}`}
+                    className={`whitespace-nowrap md:whitespace-normal text-left px-4 py-3 text-[11px] font-mono tracking-widest uppercase transition-colors ${activeTextSection === section ? 'bg-white/10 text-white border-b-2 md:border-b-0 md:border-l-2 border-white' : 'text-cream-muted hover:text-white hover:bg-white/5'}`}
                   >
                     {section}
                   </button>
