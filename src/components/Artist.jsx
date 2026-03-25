@@ -24,12 +24,12 @@ export default function Artist() {
     <section id="artist" ref={ref} className="relative py-32 md:py-48 bg-[#050505] overflow-hidden">
       <div className="max-w-[90rem] mx-auto px-6 md:px-12">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
-          
+
           {/* Image */}
           <div className="reveal-scale relative aspect-[3/4] md:aspect-[4/5] w-full max-w-lg mx-auto lg:mx-0">
-            <img 
-              src="/artist.jpg" 
-              alt="The Artist" 
+            <img
+              src="/artist2.jpeg"
+              alt="The Artist"
               className="w-full h-full object-cover grayscale-[40%] contrast-125 border border-white/5"
             />
             <div className="absolute inset-0 bg-black/10 mix-blend-multiply" />
@@ -51,7 +51,7 @@ export default function Artist() {
               <p className="text-cream-muted leading-relaxed text-sm md:text-base font-light">
                 {t('artist.p1', "With years of experience blending modern techniques and classical artistry, I focus on creating pieces that flow naturally with the body's contours.")}
               </p>
-              
+
               <p className="text-cream-muted leading-relaxed text-sm md:text-base font-light">
                 {t('artist.p2', "My primary focus in the studio is blackwork, fine line, and ornamental designs. Every session is treated as a collaborative process where your ideas and my technical expertise come together to craft something truly permanent and unique.")}
               </p>
