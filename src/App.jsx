@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { db } from './firebase'
 import { doc, getDoc } from 'firebase/firestore'
@@ -19,30 +19,39 @@ import { Toaster } from 'react-hot-toast'
 
 function HomeLayout() {
   const { i18n } = useTranslation()
+  const [loaded, setLoaded] = useState(false)
 
   useEffect(() => {
     const loadCustomTexts = async () => {
       try {
         const docRef = doc(db, 'siteContent', 'dashboard')
         const docSnap = await getDoc(docRef)
-        
+
         if (docSnap.exists() && docSnap.data().customTexts) {
           const custom = docSnap.data().customTexts
-          
-          if (custom.en) {
-            i18n.addResourceBundle('en', 'translation', custom.en, true, true)
-          }
 
-          if (custom.nl) {
-            i18n.addResourceBundle('nl', 'translation', custom.nl, true, true)
-          }
+          if (custom.en) i18n.addResourceBundle('en', 'translation', custom.en, true, true)
+          if (custom.nl) i18n.addResourceBundle('nl', 'translation', custom.nl, true, true)
+
+          // Tell i18next that resources have been updated by triggering a reload/clone
+          i18n.emit('languageChanged', i18n.language);
         }
       } catch (e) {
         console.error("Firebase text fetch failed", e)
+      } finally {
+        setLoaded(true)
       }
     }
     loadCustomTexts()
-  }, [i18n])
+  }, [])
+
+  if (!loaded) {
+    return (
+      <div className="min-h-screen bg-[#050505] flex items-center justify-center">
+        <span className="w-2 h-2 rounded-full bg-white/20 animate-pulse"></span>
+      </div>
+    )
+  }
 
   return (
     <>
@@ -67,7 +76,7 @@ export default function App() {
   return (
     <Router>
       <div className="bg-ink-black min-h-screen">
-        <Toaster 
+        <Toaster
           position="top-right"
           toastOptions={{
             style: {

@@ -9,12 +9,17 @@ export default function Admin() {
   const [isAuthenticated, setIsAuthenticated] = useState(false)
   const [password, setPassword] = useState('')
   const [error, setError] = useState('')
+
+  const [isChangingPassword, setIsChangingPassword] = useState(false)
+  const [oldPassword, setOldPassword] = useState('')
+  const [newPassword, setNewPassword] = useState('')
+  const [isAuthenticating, setIsAuthenticating] = useState(false)
   const [activeTab, setActiveTab] = useState('portfolio')
   const [activeTextSection, setActiveTextSection] = useState('hero')
   const [instagramLinks, setInstagramLinks] = useState([])
   const [uploading, setUploading] = useState(false)
   const [isMenuOpen, setIsMenuOpen] = useState(false)
-  
+
   const [editingLang, setEditingLang] = useState('en')
   const [customTexts, setCustomTexts] = useState({ en: {}, nl: {} })
 
@@ -41,20 +46,73 @@ export default function Admin() {
           loadedImages.push({ id: d.id, url: d.data().base64 })
         })
         setInstagramLinks(loadedImages)
-      } catch(e) {
+      } catch (e) {
         console.error('Firebase read error:', e)
       }
     }
     loadFirebaseData()
   }, [])
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault()
-    if (password === 'admin123') { 
-      setIsAuthenticated(true)
-      localStorage.setItem('inkadmin', 'true')
-    } else {
-      setError('Incorrect PIN')
+    setIsAuthenticating(true)
+    setError('')
+    try {
+      const docRef = doc(db, 'siteContent', 'auth')
+      const docSnap = await getDoc(docRef)
+
+      let currentPassword = 'admin123'
+      if (docSnap.exists() && docSnap.data().password) {
+        currentPassword = docSnap.data().password
+      }
+
+      if (password === currentPassword) {
+        setIsAuthenticated(true)
+        localStorage.setItem('inkadmin', 'true')
+      } else {
+        setError('Incorrect PIN')
+      }
+    } catch (err) {
+      console.error(err)
+      setError('Connection Error')
+    } finally {
+      setIsAuthenticating(false)
+    }
+  }
+
+  const handleChangePasswordSubmit = async (e) => {
+    e.preventDefault()
+    if (!newPassword || newPassword.length < 4) {
+      setError('New PIN must be at least 4 characters')
+      return
+    }
+
+    setIsAuthenticating(true)
+    setError('')
+    try {
+      const docRef = doc(db, 'siteContent', 'auth')
+      const docSnap = await getDoc(docRef)
+
+      let currentPassword = 'admin123'
+      if (docSnap.exists() && docSnap.data().password) {
+        currentPassword = docSnap.data().password
+      }
+
+      if (oldPassword === currentPassword) {
+        await setDoc(docRef, { password: newPassword }, { merge: true })
+        toast.success('Master PIN successfully updated!')
+        setIsChangingPassword(false)
+        setOldPassword('')
+        setNewPassword('')
+        setPassword('')
+      } else {
+        setError('Incorrect Old PIN')
+      }
+    } catch (err) {
+      console.error(err)
+      setError('Connection Error')
+    } finally {
+      setIsAuthenticating(false)
     }
   }
 
@@ -78,10 +136,10 @@ export default function Admin() {
           }
           canvas.width = img.width * scaleSize
           canvas.height = img.height * scaleSize
-          
+
           const ctx = canvas.getContext('2d')
           ctx.drawImage(img, 0, 0, canvas.width, canvas.height)
-          
+
           // Compress strictly to high compression JPEG ratio saving space (~150kb)
           resolve(canvas.toDataURL('image/jpeg', 0.6))
         }
@@ -98,14 +156,14 @@ export default function Admin() {
     setUploading(true)
     try {
       const base64Image = await compressImage(file)
-      
+
       const docRef = await addDoc(collection(db, 'portfolio'), {
         base64: base64Image,
         createdAt: Date.now()
       })
-      
+
       setInstagramLinks(prev => [{ id: docRef.id, url: base64Image }, ...prev])
-    } catch(err) {
+    } catch (err) {
       toast.error('Error uploading image: ' + err.message)
       console.error(err)
     } finally {
@@ -118,7 +176,7 @@ export default function Admin() {
     try {
       await deleteDoc(doc(db, 'portfolio', idToRemove))
       setInstagramLinks(prev => prev.filter(img => img.id !== idToRemove))
-    } catch(err) {
+    } catch (err) {
       toast.error('Error updating database: ' + err.message)
     }
   }
@@ -128,7 +186,7 @@ export default function Admin() {
     try {
       await setDoc(doc(db, 'siteContent', 'dashboard'), { customTexts }, { merge: true })
       toast.success('All website texts saved successfully! Updates are live.')
-    } catch(err) {
+    } catch (err) {
       console.error(err)
       toast.error('Failed to save! Please verify that "Firestore Database" is set up in Firebase.')
     }
@@ -138,7 +196,7 @@ export default function Admin() {
     setCustomTexts(prev => {
       const newState = { ...prev }
       const langState = { ...(newState[editingLang] || {}) }
-      
+
       const keys = path.split('.')
       let current = langState
       for (let i = 0; i < keys.length - 1; i++) {
@@ -146,7 +204,7 @@ export default function Admin() {
         current = current[keys[i]]
       }
       current[keys[keys.length - 1]] = value
-      
+
       newState[editingLang] = langState
       return newState
     })
@@ -156,7 +214,7 @@ export default function Admin() {
     const keys = path.split('.')
     let customVal = customTexts[editingLang]
     let defaultVal = editingLang === 'en' ? enDefault : nlDefault
-    
+
     for (const key of keys) {
       customVal = customVal?.[key]
       defaultVal = defaultVal?.[key]
@@ -178,14 +236,14 @@ export default function Admin() {
               {key.replace(/_/g, ' ')}
             </label>
             {isLongText ? (
-              <textarea 
+              <textarea
                 value={getValue(currentPath)}
                 onChange={(e) => handleTextChange(currentPath, e.target.value)}
                 rows={4}
                 className="w-full bg-[#050505] border border-white/10 text-white p-4 focus:outline-none focus:border-white/40 transition-colors font-light text-sm"
               />
             ) : (
-              <input 
+              <input
                 type="text"
                 value={getValue(currentPath)}
                 onChange={(e) => handleTextChange(currentPath, e.target.value)}
@@ -213,27 +271,66 @@ export default function Admin() {
   if (!isAuthenticated) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-[#050505] px-6">
-        <form onSubmit={handleLogin} className="w-full max-w-sm flex flex-col gap-6 p-10 border border-white/10 bg-black/50 backdrop-blur-md">
+        <div className="w-full max-w-sm flex flex-col gap-6 p-10 border border-white/10 bg-black/50 backdrop-blur-md">
           <div className="text-center mb-6">
             <h1 className="text-white font-display text-4xl mb-2">Admin</h1>
             <p className="text-cream-dim text-[10px] uppercase font-mono tracking-[0.3em]">Restricted Access</p>
           </div>
-          
-          <div>
-            <input 
-              type="password" 
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              placeholder="Enter Master PIN"
-              className="w-full bg-[#0a0a0a] border border-white/20 text-white px-4 py-4 focus:outline-none focus:border-white/50 transition-colors font-mono tracking-widest text-center"
-            />
-            {error && <p className="text-crimson text-xs mt-3 text-center tracking-widest uppercase font-mono">{error}</p>}
-          </div>
 
-          <button type="submit" className="w-full bg-white text-black py-4 font-mono text-[11px] tracking-[0.2em] uppercase hover:bg-cream-dim transition-colors mt-2">
-            Unlock Dashboard
-          </button>
-        </form>
+          {!isChangingPassword ? (
+            <form onSubmit={handleLogin} className="flex flex-col gap-6">
+              <div>
+                <input
+                  type="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  placeholder="Enter Master PIN"
+                  disabled={isAuthenticating}
+                  className="w-full bg-[#0a0a0a] border border-white/20 text-white px-4 py-4 focus:outline-none focus:border-white/50 transition-colors font-mono tracking-widest text-center disabled:opacity-50"
+                />
+                {error && <p className="text-crimson text-xs mt-3 text-center tracking-widest uppercase font-mono">{error}</p>}
+              </div>
+
+              <button type="submit" disabled={isAuthenticating} className="w-full bg-white text-black py-4 font-mono text-[11px] tracking-[0.2em] uppercase hover:bg-cream-dim transition-colors mt-2 disabled:opacity-50">
+                {isAuthenticating ? 'Unlocking...' : 'Unlock Dashboard'}
+              </button>
+
+              <button type="button" onClick={() => { setIsChangingPassword(true); setError(''); setPassword(''); }} className="text-[10px] font-mono tracking-widest text-cream-dim hover:text-white uppercase transition-colors text-center mt-2">
+                Change Master PIN?
+              </button>
+            </form>
+          ) : (
+            <form onSubmit={handleChangePasswordSubmit} className="flex flex-col gap-6">
+              <div>
+                <input
+                  type="password"
+                  value={oldPassword}
+                  onChange={(e) => setOldPassword(e.target.value)}
+                  placeholder="Old Master PIN"
+                  disabled={isAuthenticating}
+                  className="w-full bg-[#0a0a0a] border border-white/20 text-white px-4 py-4 mb-4 focus:outline-none focus:border-white/50 transition-colors font-mono tracking-widest text-center disabled:opacity-50"
+                />
+                <input
+                  type="password"
+                  value={newPassword}
+                  onChange={(e) => setNewPassword(e.target.value)}
+                  placeholder="New Master PIN"
+                  disabled={isAuthenticating}
+                  className="w-full bg-[#0a0a0a] border border-white/20 text-white px-4 py-4 focus:outline-none focus:border-white/50 transition-colors font-mono tracking-widest text-center disabled:opacity-50"
+                />
+                {error && <p className="text-crimson text-xs mt-3 text-center tracking-widest uppercase font-mono">{error}</p>}
+              </div>
+
+              <button type="submit" disabled={isAuthenticating} className="w-full bg-white text-black py-4 font-mono text-[11px] tracking-[0.2em] uppercase hover:bg-cream-dim transition-colors mt-2 disabled:opacity-50">
+                {isAuthenticating ? 'Updating...' : 'Update Master PIN'}
+              </button>
+
+              <button type="button" onClick={() => { setIsChangingPassword(false); setError(''); setOldPassword(''); setNewPassword(''); }} className="text-[10px] font-mono tracking-widest text-cream-dim hover:text-white uppercase transition-colors text-center mt-2">
+                Cancel / Back to Login
+              </button>
+            </form>
+          )}
+        </div>
       </div>
     )
   }
@@ -248,9 +345,9 @@ export default function Admin() {
             <p className="text-cream-dim text-[10px] font-mono tracking-widest uppercase text-emerald-500">Online & Synced</p>
           </div>
           {/* Mobile Menu Button */}
-          <button 
+          <button
             type="button"
-            onClick={() => setIsMenuOpen(!isMenuOpen)} 
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
             className="md:hidden text-white p-2 focus:outline-none"
           >
             {isMenuOpen ? (
@@ -266,23 +363,23 @@ export default function Admin() {
         </div>
 
         <nav className={`flex-col gap-2 flex-1 mt-4 md:mt-8 ${isMenuOpen ? 'flex' : 'hidden md:flex'}`}>
-          <button 
+          <button
             type="button"
             onClick={() => { setActiveTab('portfolio'); setIsMenuOpen(false); }}
             className={`text-left px-4 py-3 text-[11px] font-mono tracking-[0.2em] uppercase transition-colors ${activeTab === 'portfolio' ? 'bg-white text-black' : 'text-cream-muted hover:bg-white/5'}`}
           >
             Portfolio Images
           </button>
-          <button 
+          <button
             type="button"
             onClick={() => { setActiveTab('texts'); setIsMenuOpen(false); }}
             className={`text-left px-4 py-3 text-[11px] font-mono tracking-[0.2em] uppercase transition-colors ${activeTab === 'texts' ? 'bg-white text-black' : 'text-cream-muted hover:bg-white/5'}`}
           >
-             Website Texts
+            Website Texts
           </button>
         </nav>
 
-        <button 
+        <button
           type="button"
           onClick={() => { handleLogout(); setIsMenuOpen(false); }}
           className={`text-left px-4 py-3 text-[11px] font-mono tracking-[0.2em] uppercase text-crimson hover:bg-crimson/10 transition-colors mt-4 md:mt-0 ${isMenuOpen ? 'block' : 'hidden md:block'}`}
@@ -304,15 +401,15 @@ export default function Admin() {
             </div>
 
             <div className="mb-16">
-              <label 
+              <label
                 className={`relative inline-flex items-center justify-center w-full md:w-auto px-12 py-5 font-mono text-[11px] tracking-[0.2em] uppercase border transition-colors cursor-pointer ${uploading ? 'bg-cream-dim text-black border-cream-dim' : 'bg-transparent text-white border-white/20 hover:border-white'}`}
               >
-                <input 
-                  type="file" 
+                <input
+                  type="file"
                   accept="image/*"
                   onChange={handleFileChange}
                   disabled={uploading}
-                  className="absolute inset-0 w-full h-full opacity-0 cursor-pointer disabled:cursor-not-allowed" 
+                  className="absolute inset-0 w-full h-full opacity-0 cursor-pointer disabled:cursor-not-allowed"
                 />
                 {uploading ? 'Uploading to Site... (Please Wait)' : 'Select Image to Upload'}
               </label>
@@ -320,7 +417,7 @@ export default function Admin() {
 
             <div className="space-y-4">
               <h4 className="text-[10px] font-mono tracking-[0.2em] uppercase text-cream-dim mb-6">Live Gallery Assets ({instagramLinks.length})</h4>
-              
+
               {instagramLinks.length === 0 && (
                 <p className="text-white/30 text-sm font-light italic">No images proudly exhibited yet.</p>
               )}
@@ -330,9 +427,9 @@ export default function Admin() {
                 {instagramLinks.map((item) => (
                   <div key={item.id} className="relative aspect-square bg-[#0a0a0a] border border-white/10 group overflow-hidden">
                     <img src={item.url} alt="Portfolio Item" className="w-full h-full object-cover grayscale-[30%] group-hover:grayscale-0 transition-all duration-700" />
-                    
+
                     <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                      <button 
+                      <button
                         onClick={() => handleRemoveLink(item.id)}
                         className="text-[10px] text-white bg-crimson px-4 py-2 font-mono uppercase tracking-widest hover:bg-red-700 transition-colors"
                       >
@@ -356,14 +453,14 @@ export default function Admin() {
                 </p>
               </div>
               <div className="flex bg-[#0a0a0a] border border-white/20 p-1 shrink-0">
-                <button 
+                <button
                   type="button"
                   onClick={() => setEditingLang('en')}
                   className={`px-6 py-3 text-[10px] font-mono tracking-widest transition-colors ${editingLang === 'en' ? 'bg-white text-black' : 'text-cream-dim hover:text-white'}`}
                 >
                   ENGLISH
                 </button>
-                <button 
+                <button
                   type="button"
                   onClick={() => setEditingLang('nl')}
                   className={`px-6 py-3 text-[10px] font-mono tracking-widest transition-colors ${editingLang === 'nl' ? 'bg-white text-black' : 'text-cream-dim hover:text-white'}`}
@@ -374,12 +471,12 @@ export default function Admin() {
             </div>
 
             <form onSubmit={handleSaveTexts} className="pb-32 flex flex-col md:flex-row gap-12">
-              
+
               {/* Internal Section Navigation */}
               <div className="flex overflow-x-auto md:flex-col gap-2 md:w-56 pb-4 md:pb-0 shrink-0 border-b md:border-b-0 border-white/5">
                 <h4 className="hidden md:block text-[10px] font-mono tracking-[0.2em] uppercase text-cream-dim mb-4 px-4">Website Sections</h4>
                 {Object.keys(enDefault).map(section => (
-                  <button 
+                  <button
                     key={section}
                     type="button"
                     onClick={() => setActiveTextSection(section)}
@@ -397,7 +494,7 @@ export default function Admin() {
                 </h4>
                 {renderEditorFields(enDefault[activeTextSection], activeTextSection)}
               </div>
-              
+
               <div className="fixed bottom-0 right-0 left-0 md:left-64 bg-[#030303]/95 backdrop-blur-xl border-t border-white/10 p-6 flex justify-end z-50">
                 <button type="submit" className="w-full md:w-auto px-16 bg-white text-black py-4 font-mono text-[11px] tracking-[0.2em] uppercase hover:bg-cream-dim transition-colors shadow-2xl">
                   Deploy {editingLang.toUpperCase()} Changes

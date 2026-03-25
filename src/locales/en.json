@@ -7,7 +7,9 @@
     "reviews": "Reviews",
     "faq": "FAQ",
     "contact": "Contact",
-    "cta": "Consultation"
+    "cta": "Consultation",
+    "journal": "Journal",
+    "consultation": "Apply for Consultation"
   },
   "hero": {
     "badge": "Laying ink since 2015",
@@ -15,13 +17,19 @@
     "title2": "The Ink Experience.",
     "description": "Premium blackwork and fine line tattooing focused on precision, atmosphere, and permanence. Operating out of a private studio designed for the dedicated collector.",
     "cta1": "View Portfolio",
-    "cta2": "Book Consultation"
+    "cta2": "Book Consultation",
+    "submit_inquiry": "Submit Project Inquiry",
+    "explore": "Explore the Archives"
   },
   "studio": {
     "subtitle": "The Studio",
     "title1": "Precision.",
     "title2": "Atmosphere.",
     "title3": "Permanence.",
+    "title_part1": "Where Skin",
+    "title_part2": "Becomes Canvas.",
+    "rating_label": "Google Rating",
+    "reviews_label": "Verified Reviews",
     "p1": "Ink 'n Pain is not a street shop. It is a private, appointment-only creative space designed to provide the highest echelon of tattoo artistry in a clean, distraction-free environment.",
     "p2": "We believe getting tattooed should be as premium as the art itself. From the initial consultation to the final aftercare instructions, every step is curated for excellence.",
     "location": "Location: Amsterdam",
@@ -36,7 +44,11 @@
     "exp_label": "Experience",
     "exp_value": "8+ Years",
     "specialty_label": "Specialty",
-    "specialty_value": "Blackwork & Fine Line"
+    "specialty_value": "Blackwork & Fine Line",
+    "title_part1": "Meet Your",
+    "title_part2": "Tattoo Artist.",
+    "exp_title": "Experience",
+    "specialty_title": "Specialty"
   },
   "gallery": {
     "subtitle": "Portfolio",

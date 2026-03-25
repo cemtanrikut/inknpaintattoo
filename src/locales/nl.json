@@ -7,7 +7,9 @@
     "reviews": "Recensies",
     "faq": "FAQ",
     "contact": "Contact",
-    "cta": "Consultatie"
+    "cta": "Consultatie",
+    "journal": "Logboek",
+    "consultation": "Consult Aanvragen"
   },
   "hero": {
     "badge": "Inkt leggen sinds 2015",
@@ -15,13 +17,19 @@
     "title2": "De Inkt Ervaring.",
     "description": "Premium blackwork en fine line tatoeëren met een focus op precisie, sfeer en permanentie. Werkend vanuit een privé studio ontworpen voor de toegewijde verzamelaar.",
     "cta1": "Bekijk Portfolio",
-    "cta2": "Boek Consultatie"
+    "cta2": "Boek Consultatie",
+    "submit_inquiry": "Projectaanvraag Indienen",
+    "explore": "Ontdek het Archief"
   },
   "studio": {
     "subtitle": "De Studio",
     "title1": "Precisie.",
     "title2": "Sfeer.",
     "title3": "Permanentie.",
+    "title_part1": "Waar Huid",
+    "title_part2": "Canvas Wordt.",
+    "rating_label": "Google Beoordeling",
+    "reviews_label": "Geverifieerde Recensies",
     "p1": "Ink 'n Pain is geen straatwinkel. Het is een creatieve privéruimte, alleen op afspraak, ontworpen om de hoogste klasse van tatoeagekunst te bieden in een schone, afleidingsvrije omgeving.",
     "p2": "Wij geloven dat getatoeëerd worden net zo premium moet zijn als de kunst zelf. Van het eerste consult tot de laatste nazorginstructies, elke stap is samengesteld voor uitmuntendheid.",
     "location": "Locatie: Amsterdam",
@@ -36,7 +44,11 @@
     "exp_label": "Ervaring",
     "exp_value": "8+ Jaar",
     "specialty_label": "Specialiteit",
-    "specialty_value": "Blackwork & Fine Line"
+    "specialty_value": "Blackwork & Fine Line",
+    "title_part1": "Ontmoet Je",
+    "title_part2": "Tatoeëerder.",
+    "exp_title": "Ervaring",
+    "specialty_title": "Specialiteit"
   },
   "gallery": {
     "subtitle": "Portfolio",
