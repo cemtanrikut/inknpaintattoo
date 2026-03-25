@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
+import WhatsAppIcon from './WhatsAppIcon'
 
 export default function Navbar() {
   const { t, i18n } = useTranslation()
@@ -31,9 +32,8 @@ export default function Navbar() {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-700 ${
-        scrolled ? 'bg-glass border-b border-white/5 py-4' : 'bg-transparent py-8'
-      }`}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-700 ${scrolled ? 'bg-glass border-b border-white/5 py-4' : 'bg-transparent py-8'
+        }`}
     >
       <div className="max-w-[90rem] mx-auto px-6 md:px-12 flex items-center justify-between">
         {/* Logo */}
@@ -41,9 +41,9 @@ export default function Navbar() {
           onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
           className="flex flex-col text-left group"
         >
-          <img 
-            src="/logo.png" 
-            alt="Ink 'n Pain Logo" 
+          <img
+            src="/logo.png"
+            alt="Ink 'n Pain Logo"
             className="h-12 md:h-14 object-contain transition-opacity duration-500 hover:opacity-80"
           />
         </button>
@@ -60,12 +60,13 @@ export default function Navbar() {
             </button>
           ))}
           <a
-            href="https://www.instagram.com/ink.n.pain.tattoo"
+            href="https://wa.me/31620973330"
             target="_blank"
             rel="noopener noreferrer"
             className="ml-4 px-6 py-2.5 border border-white/20 text-cream text-[11px] tracking-[0.2em] uppercase font-mono hover:bg-white hover:text-black transition-all duration-500 flex items-center gap-2"
           >
             <span className="w-1.5 h-1.5 rounded-full bg-[#10B981] animate-pulse-slow shadow-[0_0_8px_rgba(16,185,129,0.5)]"></span>
+            <WhatsAppIcon className="w-3.5 h-3.5" />
             {t('nav.consultation', 'Apply for Consultation')}
           </a>
 
@@ -90,9 +91,8 @@ export default function Navbar() {
 
       {/* Mobile overlay */}
       <div
-        className={`fixed inset-0 bg-[#050505] z-40 transition-transform duration-700 ease-in-out md:hidden flex flex-col items-center justify-center ${
-          menuOpen ? 'translate-x-0' : 'translate-x-full'
-        }`}
+        className={`fixed inset-0 bg-[#050505] z-40 transition-transform duration-700 ease-in-out md:hidden flex flex-col items-center justify-center ${menuOpen ? 'translate-x-0' : 'translate-x-full'
+          }`}
       >
         <nav className="flex flex-col items-center gap-8">
           {navItems.map((item, idx) => (
@@ -106,15 +106,16 @@ export default function Navbar() {
             </button>
           ))}
           <a
-            href="https://www.instagram.com/ink.n.pain.tattoo"
+            href="https://wa.me/31620973330"
             target="_blank"
             rel="noopener noreferrer"
             className="mt-8 px-8 py-3 border border-white/20 text-white text-xs tracking-[0.2em] uppercase font-mono transition-all duration-300 active:bg-white active:text-black flex items-center gap-2"
           >
             <span className="w-1.5 h-1.5 rounded-full bg-[#10B981] shadow-[0_0_8px_rgba(16,185,129,0.5)]"></span>
+            <WhatsAppIcon className="w-4 h-4" />
             {t('nav.consultation', 'Apply for Consultation')}
           </a>
-          
+
           <div className="mt-6 flex items-center gap-4">
             <button onClick={() => { i18n.changeLanguage('en'); setMenuOpen(false); }} className={`text-[11px] font-mono tracking-widest ${i18n.language === 'en' ? 'text-white' : 'text-cream-dim'} transition-colors`}>EN</button>
             <span className="text-white/20 text-xs">|</span>

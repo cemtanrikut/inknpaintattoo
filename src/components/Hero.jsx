@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
+import WhatsAppIcon from './WhatsAppIcon'
 
 const HERO_BG = 'https://images.unsplash.com/photo-1598371839696-5c5bb00bdc28?w=2400&q=85&fit=crop'
 
@@ -33,7 +34,7 @@ export default function Hero() {
         <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-[#050505]/40 to-transparent" />
         <div className="absolute inset-0 bg-gradient-to-b from-[#050505]/80 via-transparent to-transparent" />
         <div className="absolute inset-0 bg-gradient-to-r from-[#050505] via-transparent to-[#050505]" />
-        
+
         {/* Deep red underglow */}
         <div className="absolute bottom-0 left-1/4 w-1/2 h-[40vh] bg-crimson/10 blur-[150px] mix-blend-screen pointer-events-none" />
         <div className="noise-overlay" />
@@ -43,7 +44,7 @@ export default function Hero() {
       <div className="relative z-10 max-w-[90rem] mx-auto w-full flex flex-col md:flex-row md:items-end justify-between gap-12">
         {/* Left Col: Main Title */}
         <div className="hero-anim reveal-up flex-1 flex flex-col items-start" style={{ transitionDelay: '0.2s' }}>
-          
+
           {/* Availability Badge */}
           <div className="flex items-center gap-3 px-4 py-2 border border-white/10 bg-[#050505]/50 backdrop-blur-md mb-8">
             <span className="w-1.5 h-1.5 rounded-full bg-[#10B981] animate-pulse-slow shadow-[0_0_8px_rgba(16,185,129,0.5)]"></span>
@@ -53,9 +54,9 @@ export default function Hero() {
           </div>
 
           <div className="mb-8 w-full max-w-2xl px-4 md:px-0">
-            <img 
-              src="/logo.png" 
-              alt="Ink 'n Pain Logo" 
+            <img
+              src="/logo.png"
+              alt="Ink 'n Pain Logo"
               className="w-full h-auto max-h-[40vh] md:max-h-[60vh] object-contain drop-shadow-2xl"
             />
           </div>
@@ -69,16 +70,14 @@ export default function Hero() {
 
           <div className="flex flex-col gap-4 w-full sm:w-max">
             <a
-              href="https://www.instagram.com/ink.n.pain.tattoo"
+              href="https://wa.me/31620973330"
               target="_blank"
               rel="noopener noreferrer"
               className="group relative px-8 py-4 bg-white text-black text-[11px] tracking-[0.2em] font-medium uppercase overflow-hidden text-center flex items-center justify-center gap-2"
             >
               <span className="relative z-10 flex items-center gap-2">
+                <WhatsAppIcon className="w-4 h-4" />
                 {t('hero.submit_inquiry', 'Submit Project Inquiry')}
-                <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                </svg>
               </span>
               <div className="absolute inset-0 bg-cream/90 translate-y-[100%] group-hover:translate-y-0 transition-transform duration-500 ease-[cubic-bezier(0.86,0,0.07,1)]" />
             </a>

@@ -30,13 +30,13 @@ export default function Footer() {
         <div className="reveal-up grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-32">
           {/* Brand Col */}
           <div className="lg:col-span-2 space-y-6">
-            <button 
+            <button
               onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
               className="block group"
             >
-              <img 
-                src="/logo.png" 
-                alt="Ink 'n Pain Logo" 
+              <img
+                src="/logo.png"
+                alt="Ink 'n Pain Logo"
                 className="h-20 md:h-24 object-contain transition-opacity duration-500 group-hover:opacity-80 drop-shadow-lg"
               />
             </button>
@@ -51,7 +51,7 @@ export default function Footer() {
             <p className="text-white text-[10px] tracking-[0.2em] font-mono uppercase mb-6">{t('footer.nav_label')}</p>
             <nav className="flex flex-col gap-4 text-sm font-light text-cream-muted">
               {['work', 'about', 'faq', 'reviews', 'contact'].map(id => (
-                <button 
+                <button
                   key={id}
                   onClick={() => document.querySelector(`#${id}`)?.scrollIntoView({ behavior: 'smooth' })}
                   className="w-fit link-underline capitalize hover:text-white transition-colors"
@@ -66,6 +66,9 @@ export default function Footer() {
           <div>
             <p className="text-white text-[10px] tracking-[0.2em] font-mono uppercase mb-6">{t('footer.connect_label')}</p>
             <nav className="flex flex-col gap-4 text-sm font-light text-cream-muted">
+              <a href="https://wa.me/31620973330" target="_blank" rel="noopener noreferrer" className="w-fit link-underline hover:text-white transition-colors">
+                WhatsApp
+              </a>
               <a href="https://www.instagram.com/ink.n.pain.tattoo" target="_blank" rel="noopener noreferrer" className="w-fit link-underline hover:text-white transition-colors">
                 Instagram
               </a>

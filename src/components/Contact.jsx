@@ -1,5 +1,6 @@
 import { useEffect, useRef } from 'react'
 import { useTranslation } from 'react-i18next'
+import WhatsAppIcon from './WhatsAppIcon'
 
 export default function Contact() {
   const { t } = useTranslation()
@@ -20,7 +21,7 @@ export default function Contact() {
     <section id="contact" ref={ref} className="py-32 md:py-48 bg-[#050505] relative border-b border-hairline overflow-hidden">
       <div className="max-w-[90rem] mx-auto px-6 md:px-12">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-8">
-          
+
           {/* Main Inquiry Column */}
           <div className="lg:col-span-6 reveal-up border-b lg:border-none border-hairline pb-16 lg:pb-0">
             <div className="flex items-center gap-4 mb-10">
@@ -63,15 +64,13 @@ export default function Contact() {
             </div>
 
             <a
-              href="https://www.instagram.com/ink.n.pain.tattoo"
+              href="https://wa.me/31620973330"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center justify-between w-full md:w-auto md:min-w-[300px] px-8 py-5 border border-white/20 text-white text-[11px] tracking-[0.2em] font-medium uppercase hover:bg-white hover:text-black transition-all duration-500 group"
             >
               <span>{t('contact.btn')}</span>
-              <svg className="w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-              </svg>
+              <WhatsAppIcon className="w-4 h-4 transform group-hover:scale-110 transition-transform" />
             </a>
           </div>
 
